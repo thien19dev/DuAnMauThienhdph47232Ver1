@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:gravity="center"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="Thêm Sách"
+        android:textSize="25dp"
+        />
+    <EditText
+        android:layout_marginVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mã Sách"
+        android:id="@+id/edThemMaSach"
+        android:background="@drawable/custom_editext"
+        />
+
+    <EditText
+        android:layout_marginVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên Sách"
+        android:id="@+id/edThemTenSach"
+        android:background="@drawable/custom_editext"
+        />
+    <EditText
+        android:id="@+id/edThemGiaThueSach"
+        android:layout_marginVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Giá Thuê"
+        android:background="@drawable/custom_editext"
+        />
+    
+    <Spinner
+        android:layout_width="400dp"
+        android:layout_height="30dp"
+        android:layout_margin="10dp"
+        android:id="@+id/spLoaiSach"
+        android:scrollbarSize="45dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/btnSaveSach"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Lưu"
+            />
+        <Button
+            android:id="@+id/btnCancelSaveSach"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Hủy"
+            android:layout_marginLeft="10dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>
