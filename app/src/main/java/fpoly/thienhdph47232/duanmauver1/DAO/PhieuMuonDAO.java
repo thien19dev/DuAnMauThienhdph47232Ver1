@@ -21,7 +21,7 @@ public class PhieuMuonDAO {
     private SQLiteDatabase sqLiteDatabase;
     DbHelper dbHelper;
     private Context context;
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public PhieuMuonDAO(Context context) {
         this.context = context;
@@ -36,7 +36,7 @@ public class PhieuMuonDAO {
         values.put("ngay", dateFormat.format(obj.getNgay()));
         values.put("tienThue", obj.getTienThue());
         values.put("traSach", obj.getTraSach());
-        return sqLiteDatabase.insert("Sach", null, values);
+        return sqLiteDatabase.insert("PhieuMuon", null, values);
     }
     public int updatePhieuMuon(PhieuMuon obj){
         ContentValues values = new ContentValues();
@@ -46,7 +46,7 @@ public class PhieuMuonDAO {
         values.put("ngay", dateFormat.format(obj.getNgay()));
         values.put("tienThue", obj.getTienThue());
         values.put("traSach", obj.getTraSach());
-        return sqLiteDatabase.update("Sach", values,"maPM=?", new String[]{String.valueOf(obj.getMaPhieuMuon())});
+        return sqLiteDatabase.update("PhieuMuon", values,"maPM=?", new String[]{String.valueOf(obj.getMaPhieuMuon())});
     }
 
     public int delete(String id){

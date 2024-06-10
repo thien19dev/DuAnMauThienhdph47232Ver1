@@ -139,7 +139,6 @@ public class QuanLyPhieuMuon extends Fragment {
         btnHuyLuuPhieuMuon = dialog.findViewById(R.id.btnHuyLuuPhieuMuon);
 
         thanhVienDAO = new ThanhVienDAO(context);
-        listThanhVien = new ArrayList<ThanhVien>();
         listThanhVien = (ArrayList<ThanhVien>) thanhVienDAO.getAll();
         thanhVienSpinnerAdapter = new ThanhVienSpinnerAdapter(context, listThanhVien);
         spTV.setAdapter(thanhVienSpinnerAdapter);
