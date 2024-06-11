@@ -31,7 +31,7 @@ public class PhieuMuonListViewAdapter extends ArrayAdapter<PhieuMuon> {
     ImageView imgDel;
     SachDAO sachDAO;
     ThanhVienDAO thanhVienDAO;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public PhieuMuonListViewAdapter(@NonNull Context context,
                                     QuanLyPhieuMuon phieuMuonFragment, ArrayList<PhieuMuon> phieuMuonArrayList) {

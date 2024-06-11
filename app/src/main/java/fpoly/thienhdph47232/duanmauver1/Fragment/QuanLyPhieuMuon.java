@@ -74,7 +74,7 @@ public class QuanLyPhieuMuon extends Fragment {
     int maSach;
     int tienThue;
     int positionTV, positionSach;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
