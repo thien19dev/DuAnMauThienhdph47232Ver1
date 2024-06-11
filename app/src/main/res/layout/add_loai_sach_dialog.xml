@@ -14,11 +14,12 @@
         android:textStyle="bold"
         />
 
-    <EditText
+    <TextView
         android:id="@+id/edIdLoaiSach"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ID"
+        android:hint=""
+        android:text="ID tự động cập nhật"
         android:inputType="number" />
 
     <EditText

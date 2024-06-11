@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
     <TextView
+        android:id="@+id/tvTitleSach"
         android:layout_width="match_parent"
         android:gravity="center"
         android:layout_height="wrap_content"
@@ -39,8 +40,8 @@
         />
     
     <Spinner
-        android:layout_width="400dp"
-        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:id="@+id/spLoaiSach"
         android:scrollbarSize="45dp"

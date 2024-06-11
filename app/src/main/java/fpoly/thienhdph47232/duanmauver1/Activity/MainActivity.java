@@ -26,6 +26,8 @@ import fpoly.thienhdph47232.duanmauver1.Fragment.QuanLyLoaiSach;
 import fpoly.thienhdph47232.duanmauver1.Fragment.QuanLyPhieuMuon;
 import fpoly.thienhdph47232.duanmauver1.Fragment.QuanLySach;
 import fpoly.thienhdph47232.duanmauver1.Fragment.QuanLyThanhVien;
+import fpoly.thienhdph47232.duanmauver1.Fragment.ThongKeDoanhThu;
+import fpoly.thienhdph47232.duanmauver1.Fragment.Top10Sach;
 import fpoly.thienhdph47232.duanmauver1.Model.ThuThu;
 import fpoly.thienhdph47232.duanmauver1.R;
 
@@ -73,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new QuanLySach();
                 } else if (menuItem.getItemId() == R.id.QuanLyThanhVien) {
                     fragment = new QuanLyThanhVien();
+                } else if (menuItem.getItemId() == R.id.Top10Sach) {
+                    fragment = new Top10Sach();
+                } else if (menuItem.getItemId() == R.id.DoanhThu) {
+                    fragment = new ThongKeDoanhThu();
                 } else if (menuItem.getItemId() == R.id.DoiMatKhau) {
                     fragment = new ChangePassword();
                 } else if (menuItem.getItemId() == R.id.DangXuat) {

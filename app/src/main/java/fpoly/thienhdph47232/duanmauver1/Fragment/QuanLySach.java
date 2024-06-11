@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -63,17 +64,6 @@ public class QuanLySach extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quan_ly_sach, container, false);
 
-//        recyclerViewSach = view.findViewById(R.id.recycleViewSach);
-//        floatAddSach = view.findViewById(R.id.floatAddSach);
-//
-//        sachDAO = new SachDAO(getContext());
-//        ArrayList<Sach> list = sachDAO.getDSSach();
-//
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-//        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-//        sachAdapter = new SachAdapter(getContext(), list);
-//        recyclerViewSach.setLayoutManager(linearLayoutManager);
-//        recyclerViewSach.setAdapter(sachAdapter);
         floatAddSach = view.findViewById(R.id.fabSach);
         lvSach = view.findViewById(R.id.lvSach);
         sachDAO = new SachDAO(getActivity());
@@ -129,6 +119,7 @@ public class QuanLySach extends Fragment {
     public void OpenDialog(final Context context, final int type){
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.add_item_sach_dialog);
+        TextView tvTitleSach = dialog.findViewById(R.id.tvTitleSach);
         edMaSach = dialog.findViewById(R.id.edThemMaSach);
         edTenSach = dialog.findViewById(R.id.edThemTenSach);
         edGiaThue = dialog.findViewById(R.id.edThemGiaThueSach);
@@ -159,6 +150,7 @@ public class QuanLySach extends Fragment {
         });
         edMaSach.setEnabled(false);
         if (type != 0){
+            tvTitleSach.setText("Cập Nhật Thông Tin Sách");
             edMaSach.setText(String.valueOf(item.getMaSach()));
             edTenSach.setText(item.getTenSach());
             edGiaThue.setText(String.valueOf(item.getGiaThue()));

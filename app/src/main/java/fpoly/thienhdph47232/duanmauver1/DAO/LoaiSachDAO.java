@@ -24,19 +24,21 @@ public class LoaiSachDAO {
 
     public long insert(LoaiSach obj){
         ContentValues values = new ContentValues();
-        values.put("maLoai", obj.getMaLoai());
         values.put("tenLoai", obj.getTenLoai());
         return sqLiteDatabase.insert("LoaiSach",null, values);
     }
 
     public int updateLoaiSach(LoaiSach obj){
         ContentValues values = new ContentValues();
-        values.put("maLoai", obj.getMaLoai());
+//        values.put("maLoai", obj.getMaLoai());
         values.put("tenLoai", obj.getTenLoai());
         return sqLiteDatabase.update("LoaiSach", values, "maLoai = ?", new String[]{String.valueOf(obj.getMaLoai())});
     }
-    public int delete(String id){
-        return sqLiteDatabase.delete("LoaiSach", "maLoai = ?", new String[]{id});
+    public boolean delete(int id){
+        long check = sqLiteDatabase.delete("LoaiSach", "maLoai = ?", new String[]{String.valueOf(id)});
+        if (check > 0)
+            return true;
+        return false;
     }
 
     @SuppressLint("Range")
@@ -76,7 +78,9 @@ public class LoaiSachDAO {
         if (cursor != null && cursor.getCount() > 0){
             cursor.moveToFirst();
             do{
-                loaiSachArrayList.add(new LoaiSach(cursor.getInt(0), cursor.getString(1)));
+                LoaiSach loaiSach = new LoaiSach(cursor.getString(1));
+                loaiSach.setMaLoai(cursor.getInt(0));
+                loaiSachArrayList.add(loaiSach);
             } while (cursor.moveToNext());
             cursor.close();
         } else {

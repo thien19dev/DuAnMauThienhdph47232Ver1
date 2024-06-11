@@ -5,14 +5,21 @@
     android:layout_margin="30dp"
     android:padding="30dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
+    android:layout_height="match_parent">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thêm Thành Viên"
+        android:text="Cập Nhật Thành Viên"
         android:textSize="25dp"
+        android:layout_marginVertical="20dp"
         android:textStyle="bold"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:id="@+id/idTVUpdate"
+        android:text="ID: "
         />
     <TextView
         android:layout_width="match_parent"
@@ -22,7 +29,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edThemTenThanhVien"
+        android:id="@+id/edUpdateTenThanhVien"
         />
 
     <TextView
@@ -33,20 +40,21 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edThemSinhThanhVien"
+        android:id="@+id/edUpdateNamSinhThanhVien"
         />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Thêm Thành Viên"
-        android:id="@+id/btnThemThanhVien"
+        android:text="Lưu Thành Viên"
+        android:id="@+id/btnLuuThanhVien"
         />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Hủy"
-        android:id="@+id/btnHuyThemThanhVien"
+        android:id="@+id/btnHuyLuuThanhVien"
         />
 </LinearLayout>
+

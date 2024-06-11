@@ -7,7 +7,7 @@ public class LoaiSach {
     public LoaiSach() {
     }
 
-    public LoaiSach(int maLoai, String tenLoai) {
+    public LoaiSach( String tenLoai) {
         this.maLoai = maLoai;
         this.tenLoai = tenLoai;
     }

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -65,7 +66,7 @@ public class QuanLyLoaiSach extends Fragment {
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.add_loai_sach_dialog, null);
         builder.setView(dialogView);
-        EditText editTextId = dialogView.findViewById(R.id.edIdLoaiSach);
+        TextView editTextId = dialogView.findViewById(R.id.edIdLoaiSach);
         EditText editTextName = dialogView.findViewById(R.id.edTenLoaiSach);
         Button buttonAdd = dialogView.findViewById(R.id.buttonAdd);
         Button buttonCancel = dialogView.findViewById(R.id.buttonCancel);
@@ -73,26 +74,38 @@ public class QuanLyLoaiSach extends Fragment {
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String id = editTextId.getText().toString();
+//                String id = editTextId.getText().toString();
                 String name = editTextName.getText().toString();
-                if (!id.isEmpty() && !name.isEmpty()) {
-                     long check = loaiSachDAO.insert(new LoaiSach(parseInt(id), name));
-                     if (check!=0){
-                         Toast.makeText(getContext(), "Thêm Thành Công!", Toast.LENGTH_SHORT).show();
-                         loaiSachAdapter = new LoaiSachAdapter(getContext(), loaiSachDAO.getDSLoaiSach());
-                         recyclerViewLoaiSach.setAdapter(loaiSachAdapter);
-                     } else {
-                         Toast.makeText(getContext(), "Thêm Thất Bại!", Toast.LENGTH_SHORT).show();
-                     }
+                if (!name.isEmpty()) {
+                    long check = loaiSachDAO.insert(new LoaiSach(name));
+                    if (check!=0){
+                        Toast.makeText(getContext(), "Thêm Thành Công!", Toast.LENGTH_SHORT).show();
+
+                        loaiSachAdapter = new LoaiSachAdapter(getContext(), loaiSachDAO.getDSLoaiSach());
+                        recyclerViewLoaiSach.setAdapter(loaiSachAdapter);
+                    } else {
+                        Toast.makeText(getContext(), "Thêm Thất Bại!", Toast.LENGTH_SHORT).show();
+                    }
                     dialog.dismiss();
-                } else {
-                    if (id.isEmpty()) {
-                        editTextId.setError("ID không được để trống");
-                    }
-                    if (name.isEmpty()) {
-                        editTextName.setError("Tên loại không được để trống");
-                    }
                 }
+//                if (!id.isEmpty() && !name.isEmpty()) {
+//                     long check = loaiSachDAO.insert(new LoaiSach(name));
+//                     if (check!=0){
+//                         Toast.makeText(getContext(), "Thêm Thành Công!", Toast.LENGTH_SHORT).show();
+//                         loaiSachAdapter = new LoaiSachAdapter(getContext(), loaiSachDAO.getDSLoaiSach());
+//                         recyclerViewLoaiSach.setAdapter(loaiSachAdapter);
+//                     } else {
+//                         Toast.makeText(getContext(), "Thêm Thất Bại!", Toast.LENGTH_SHORT).show();
+//                     }
+//                    dialog.dismiss();
+//                } else {
+//                    if (id.isEmpty()) {
+//                        editTextId.setError("ID không được để trống");
+//                    }
+//                    if (name.isEmpty()) {
+//                        editTextName.setError("Tên loại không được để trống");
+//                    }
+//                }
             }
         });
         buttonCancel.setOnClickListener(new View.OnClickListener() {
