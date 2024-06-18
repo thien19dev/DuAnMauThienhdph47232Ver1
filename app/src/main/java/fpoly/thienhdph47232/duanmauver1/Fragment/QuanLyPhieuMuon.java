@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -75,8 +74,7 @@ public class QuanLyPhieuMuon extends Fragment {
     int maSach;
     int tienThue;
     int positionTV, positionSach;
-    SearchView searchViewPM;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,28 +91,13 @@ public class QuanLyPhieuMuon extends Fragment {
 //        phieuMuonRecyclerViewAdapter = new PhieuMuonRecyclerViewAdapter(getContext(), phieuMuonList);
         lvPhieuMuon = view.findViewById(R.id.lvQuanLyPhieuMuon);
         floatAddPhieuMuon = view.findViewById(R.id.fabPhieuMuon);
-        searchViewPM = view.findViewById(R.id.searchViewPM);
         phieuMuonDAO = new PhieuMuonDAO(getActivity());
-
 
         floatAddPhieuMuon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Add!", Toast.LENGTH_SHORT).show();
                 openDialog(getActivity(),0);
-            }
-        });
-
-        searchViewPM.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                filter(newText);
-                return true;
             }
         });
 
@@ -136,15 +119,6 @@ public class QuanLyPhieuMuon extends Fragment {
         lvPhieuMuon.setAdapter(phieuMuonListViewAdapter);
     }
 
-    void filter(String text) {
-        ArrayList<PhieuMuon> filteredList = new ArrayList<>();
-        for (PhieuMuon item : phieuMuonList) {
-//            if (item.getMaThanhVien().toLowerCase().contains(text.toLowerCase())) {
-//                filteredList.add(item);
-//            }
-        }
-        phieuMuonListViewAdapter.filterList(filteredList);
-    }
     protected void openDialog(final Context context, final int type){
         dialog = new Dialog(context);
         dialog.setContentView(R.layout.add_phieu_muon_dialog);
