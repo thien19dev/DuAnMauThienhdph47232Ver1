@@ -3,24 +3,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:layout_marginBottom="50dp"
-
     tools:context=".Fragment.QuanLyPhieuMuon">
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/lvQuanLyPhieuMuon"/>
+
+        <androidx.appcompat.widget.SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:id="@+id/searchViewPM"
+            android:queryHint="Tìm kiếm phiếu mượn"
+            />
+        <ListView
+            android:id="@+id/lvQuanLyPhieuMuon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="80dp"
+                />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fabPhieuMuon"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="48dp"
+            android:src="@drawable/add"
+            />
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/fabPhieuMuon"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="48dp"
-        android:src="@drawable/add"
-        />
 
 <!--    <RelativeLayout-->
 <!--        android:layout_width="match_parent"-->

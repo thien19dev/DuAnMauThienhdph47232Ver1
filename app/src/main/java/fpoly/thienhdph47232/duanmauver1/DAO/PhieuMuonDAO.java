@@ -21,7 +21,7 @@ public class PhieuMuonDAO {
     private SQLiteDatabase sqLiteDatabase;
     DbHelper dbHelper;
     private Context context;
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public PhieuMuonDAO(Context context) {
         this.context = context;
@@ -108,7 +108,7 @@ public class PhieuMuonDAO {
     @SuppressLint("Range")
     public int getDoanhThu(String tuNgay, String denNgay) {
         String sqlDoanhThu = "SELECT SUM(tienThue) as DoanhThu FROM PhieuMuon WHERE ngay BETWEEN ? and ?";
-        List<Integer> list = new ArrayList<Integer>();
+        List<Integer> list = new ArrayList<>();
         Cursor c = sqLiteDatabase.rawQuery(sqlDoanhThu, new String[]{tuNgay, denNgay});
 
         while (c.moveToNext()) {

@@ -46,16 +46,9 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-//        tvWelcome_admin = findViewById(R.id.tvWelcome_admin);
-//        Intent i = getIntent();
-//        String user = i.getStringExtra("user");
-//        thuThuDAO = new ThuThuDAO(this);
-//        ThuThu thuThu = thuThuDAO.getID(user);
-//        String userName = thuThu.getHoTen();
-//        tvWelcome_admin.setText("Xin Chào " + userName +"!");
-
-
         toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Quản Lý Phiếu Mượn");
+
         navigationView = findViewById(R.id.navigationView);
         frameLayout = findViewById(R.id.framlayout);
 
@@ -67,26 +60,35 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 if(menuItem.getItemId() == R.id.QuanLyPhieuMuon){
                     fragment = new QuanLyPhieuMuon();
-                    title = "Quản Lý Phiếu Mượn";
+
+                    toolbar.setTitle("Quản Lý Phiếu Mượn");
                 } else if (menuItem.getItemId() == R.id.QuanLyLoaiSach) {
                     fragment = new QuanLyLoaiSach();
-                    title = "Quản Lý Loại Sách";
+                    toolbar.setTitle("Quản Lý Loại Sách");
                 } else if (menuItem.getItemId() == R.id.QuanLySach) {
                     fragment = new QuanLySach();
+                    toolbar.setTitle("Quản Lý Sách");
+
                 } else if (menuItem.getItemId() == R.id.QuanLyThanhVien) {
                     fragment = new QuanLyThanhVien();
+                    toolbar.setTitle("Quản Lý Thành Viên");
+
                 } else if (menuItem.getItemId() == R.id.Top10Sach) {
+                    toolbar.setTitle("Top 10 Sách");
+
                     fragment = new Top10Sach();
                 } else if (menuItem.getItemId() == R.id.DoanhThu) {
+                    toolbar.setTitle("Doanh Thu");
                     fragment = new ThongKeDoanhThu();
                 } else if (menuItem.getItemId() == R.id.DoiMatKhau) {
+                    toolbar.setTitle("Đổi mật khẩu ");
                     fragment = new ChangePassword();
                 } else if (menuItem.getItemId() == R.id.DangXuat) {
                     finish();
                     return true;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.framlayout,fragment).commit();
-                setTitle(title);
+
                 drawerLayout.close();
                 return false;
             }

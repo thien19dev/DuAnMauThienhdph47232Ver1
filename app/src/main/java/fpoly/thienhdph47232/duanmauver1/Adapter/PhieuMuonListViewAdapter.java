@@ -1,5 +1,6 @@
 package fpoly.thienhdph47232.duanmauver1.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,7 +33,7 @@ public class PhieuMuonListViewAdapter extends ArrayAdapter<PhieuMuon> {
     ImageView imgDel;
     SachDAO sachDAO;
     ThanhVienDAO thanhVienDAO;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public PhieuMuonListViewAdapter(@NonNull Context context,
                                     QuanLyPhieuMuon phieuMuonFragment, ArrayList<PhieuMuon> phieuMuonArrayList) {
@@ -96,6 +98,8 @@ public class PhieuMuonListViewAdapter extends ArrayAdapter<PhieuMuon> {
             @Override
             public void onClick(View v) {
 // gọi phương thức xóa
+                showDeleteConfirmationDialog(position);
+                Toast.makeText(context, "XÓa!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -103,5 +107,27 @@ public class PhieuMuonListViewAdapter extends ArrayAdapter<PhieuMuon> {
 
 
         return view;
+    }
+
+    public void filterList(ArrayList<PhieuMuon> filteredList) {
+        phieuMuonArrayList = filteredList;
+        notifyDataSetChanged();
+    }
+
+    private void showDeleteConfirmationDialog(int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Xác nhận xóa");
+        builder.setMessage("Bạn có chắc muốn xóa mục này?");
+
+        builder.setPositiveButton("Xóa", (dialog, which) -> {
+            phieuMuonArrayList.remove(position);
+            notifyDataSetChanged();
+            dialog.dismiss();
+        });
+
+        builder.setNegativeButton("Hủy", (dialog, which) -> dialog.dismiss());
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

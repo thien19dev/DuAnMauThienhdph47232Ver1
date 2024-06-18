@@ -26,7 +26,7 @@ public class ThongKeDoanhThu extends Fragment {
     Button btnTuNgay, btnDenNgay, btnDoanhThu;
     EditText edTuNgay, edDenNgay;
     TextView tvDoanhThu;
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     int mYear, mMonth, mDay;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
