@@ -43,6 +43,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "tenLoai TEXT NOT NULL)";
         db.execSQL(CREATE_TABLE_LOAI_SACH);
         db.execSQL("INSERT INTO LoaiSach VALUES " +
+                "(0, 'Nhà Hàng - Khách Sạn'), " +
                 "(1, 'Lập Trình Android'), " +
                 "(2, 'Lập Trình IOS'), " +
                 "(3, 'Ứng Dụng Phần Mềm'), " +

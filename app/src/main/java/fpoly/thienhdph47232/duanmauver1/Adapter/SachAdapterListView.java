@@ -25,6 +25,7 @@ import fpoly.thienhdph47232.duanmauver1.R;
 public class SachAdapterListView extends ArrayAdapter<Sach> {
     Context context;
     QuanLySach quanLySachFragment;
+    LoaiSach loaiSach;
     LoaiSachDAO loaiSachDAO;
     SachDAO sachDAO;
     List<Sach> sachList;
@@ -62,14 +63,14 @@ public class SachAdapterListView extends ArrayAdapter<Sach> {
 
 //            LoaiSach loaiSach = loaiSachDAO.getID(String.valueOf(item.getMaLoai()));
 //            tvLoai.setText("Loại Sách: " + loaiSach.getTenLoai());
-
-            LoaiSach loaiSach = null;
-            try {
-                loaiSach = loaiSachDAO.getID(String.valueOf(item.getMaLoai()));
-            } catch (IndexOutOfBoundsException e) {
-                // Log error and handle appropriately
-                tvLoai.setText("Loại Sách: Không tìm thấy Ma Loai Sach");
-            }
+            loaiSachDAO = new LoaiSachDAO(context);
+            loaiSach = loaiSachDAO.getID(String.valueOf(item.getMaLoai()));
+//            try {
+//                loaiSach = loaiSachDAO.getID(String.valueOf(item.getMaLoai()));
+//            } catch (IndexOutOfBoundsException e) {
+//                // Log error and handle appropriately
+//                tvLoai.setText("Loại Sách: Không tìm thấy Ma Loai Sach");
+//            }
             if (loaiSach != null) {
                 tvLoai.setText("Loại Sách: " + loaiSach.getTenLoai());
             } else {

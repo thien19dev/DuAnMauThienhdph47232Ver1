@@ -25,8 +25,8 @@ public class SachDAO {
     public long insertSach(Sach sach){
         ContentValues values = new ContentValues();
         values.put("tenSach", sach.getTenSach());
-        values.put("maLoai", sach.getLoaiSach());
         values.put("giaThue", sach.getGiaThue());
+        values.put("maLoai", sach.getMaLoai());
 
         return db.insert("Sach", null, values);
     }
@@ -34,8 +34,8 @@ public class SachDAO {
     public long updateSach(Sach sach){
         ContentValues values = new ContentValues();
         values.put("tenSach", sach.getTenSach());
-        values.put("maLoai", sach.getMaLoai());
         values.put("giaThue", sach.getGiaThue());
+        values.put("maLoai", sach.getMaLoai());
 
         return db.update("Sach", values, "maSach=?", new String[]{String.valueOf(sach.maSach)});
     }

@@ -46,7 +46,7 @@ public class QuanLySach extends Fragment {
     Dialog dialog;
     Spinner LoaiSachspinner;
     EditText edMaSach, edTenSach, edGiaThue;
-    Button btnAddSach, btnCancelAddSach;
+//     btnAddSach, btnCancelAddSach;
     ArrayList<LoaiSach> loaiSachArrayList;
     LoaiSachDAO loaiSachDAO;
     int maLoaiSach, position;
@@ -66,6 +66,7 @@ public class QuanLySach extends Fragment {
             @Override
             public void onClick(View v) {
                 OpenDialog(getActivity(), 0);
+                capNhatLv();
             }
         });
 
@@ -98,15 +99,17 @@ public class QuanLySach extends Fragment {
         edGiaThue = dialog.findViewById(R.id.edThemGiaThueSach);
 
         LoaiSachspinner = dialog.findViewById(R.id.spLoaiSach);
-        btnAddSach = dialog.findViewById(R.id.btnSaveSach);
-        btnCancelAddSach = dialog.findViewById(R.id.btnCancelSaveSach);
+        Button btnAddSach = dialog.findViewById(R.id.btnSaveSach);
+        Button btnCancelAddSach = dialog.findViewById(R.id.btnCancelSaveSach);
 
         loaiSachArrayList = new ArrayList<LoaiSach>();
         loaiSachDAO = new LoaiSachDAO(context);
         loaiSachArrayList = (ArrayList<LoaiSach>) loaiSachDAO.getAll();
 
+
         loaiSachSpinnerAdapter = new LoaiSachSpinnerAdapter(context, loaiSachArrayList);
         LoaiSachspinner.setAdapter(loaiSachSpinnerAdapter);
+
 
         LoaiSachspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -119,7 +122,6 @@ public class QuanLySach extends Fragment {
 
             }
         });
-
 
         edMaSach.setEnabled(false); // disable edMaSach
         if (type != 0){
@@ -147,12 +149,12 @@ public class QuanLySach extends Fragment {
         btnAddSach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                item = new Sach();
-                item.setTenSach(edTenSach.getText().toString());
-                item.setGiaThue(Integer.parseInt(edGiaThue.getText().toString()));
-                item.setMaLoai(maLoaiSach);
 
                 if (vadidate() > 0){
+                    item = new Sach();
+                    item.setTenSach(edTenSach.getText().toString());
+                    item.setGiaThue(Integer.parseInt(edGiaThue.getText().toString()));
+                    item.setMaLoai(maLoaiSach);
                     if (type == 0){
                         // type = 0 (insert)
                         if (sachDAO.insertSach(item)>0){
