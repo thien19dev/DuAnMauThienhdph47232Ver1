@@ -39,7 +39,7 @@ public class QuanLyLoaiSach extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quan_ly_loai_sach, container, false);
-        //        thiết kế giao diện chính + giao diện item
+        //thiết kế giao diện chính + giao diện item
         recyclerViewLoaiSach = view.findViewById(R.id.recycleViewLoaiSach);
         floatAdd = view.findViewById(R.id.floatAddLoaiSach);
 //        data

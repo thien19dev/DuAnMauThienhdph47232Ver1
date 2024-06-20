@@ -62,8 +62,6 @@ public class PhieuMuonListViewAdapter extends ArrayAdapter<PhieuMuon> {
             tvTenSach = view.findViewById(R.id.tvTenSachofPhieuMuon);
             tvTenSach.setText("Tên Sách: " + sach.getTenSach());
 
-
-
             thanhVienDAO= new ThanhVienDAO(context);
             ThanhVien thanhVien = thanhVienDAO.getID(String.valueOf(item.getMaThanhVien()));
             tvTenTVMuon = view.findViewById(R.id.tvTenTVofPhieuMuon);

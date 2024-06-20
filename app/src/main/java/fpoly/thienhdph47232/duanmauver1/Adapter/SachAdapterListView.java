@@ -68,7 +68,7 @@ public class SachAdapterListView extends ArrayAdapter<Sach> {
                 loaiSach = loaiSachDAO.getID(String.valueOf(item.getMaLoai()));
             } catch (IndexOutOfBoundsException e) {
                 // Log error and handle appropriately
-                tvLoai.setText("Loại Sách: Không tìm thấy");
+                tvLoai.setText("Loại Sách: Không tìm thấy Ma Loai Sach");
             }
             if (loaiSach != null) {
                 tvLoai.setText("Loại Sách: " + loaiSach.getTenLoai());

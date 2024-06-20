@@ -37,6 +37,7 @@ public class PhieuMuonDAO {
         values.put("ngay", dateFormat.format(obj.getNgay()));
         values.put("tienThue", obj.getTienThue());
         values.put("traSach", obj.getTraSach());
+
         return sqLiteDatabase.insert("PhieuMuon", null, values);
     }
 

@@ -27,6 +27,7 @@ public class SachDAO {
         values.put("tenSach", sach.getTenSach());
         values.put("maLoai", sach.getLoaiSach());
         values.put("giaThue", sach.getGiaThue());
+
         return db.insert("Sach", null, values);
     }
 

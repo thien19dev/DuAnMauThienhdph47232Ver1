@@ -83,7 +83,7 @@ public class QuanLySach extends Fragment {
 
     public void capNhatLv(){
         sachList = (ArrayList<Sach>) sachDAO.getAll();
-        sachAdapter = new SachAdapterListView(getContext(), this, sachList);
+        sachAdapter = new SachAdapterListView(getActivity(), this, sachList);
         lvSach.setAdapter(sachAdapter);
     }
 
@@ -100,7 +100,6 @@ public class QuanLySach extends Fragment {
         LoaiSachspinner = dialog.findViewById(R.id.spLoaiSach);
         btnAddSach = dialog.findViewById(R.id.btnSaveSach);
         btnCancelAddSach = dialog.findViewById(R.id.btnCancelSaveSach);
-
 
         loaiSachArrayList = new ArrayList<LoaiSach>();
         loaiSachDAO = new LoaiSachDAO(context);
