@@ -57,7 +57,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "maSach INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tenSach TEXT NOT NULL," +
                 "giaThue INTEGER NOT NULL," +
-                "maLoai INTEGER REFERENCES LoaiSach(maLoai))";
+                "maLoai INTEGER REFERENCES LoaiSach(maLoai) )";
         db.execSQL(CREATE_TABLE_SACH);
         db.execSQL("INSERT INTO Sach VALUES " +
                 "(1, 'Lập Trình Website', 52000, 3), " +

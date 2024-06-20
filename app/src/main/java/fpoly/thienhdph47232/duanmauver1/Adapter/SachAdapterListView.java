@@ -35,6 +35,8 @@ public class SachAdapterListView extends ArrayAdapter<Sach> {
         this.context = context;
         this.quanLySachFragment = quanLySachFragment;
         this.sachList = sachList;
+        this.loaiSachDAO = new LoaiSachDAO(context);
+        this.sachDAO = new SachDAO(context);
     }
 
     @NonNull
@@ -58,9 +60,21 @@ public class SachAdapterListView extends ArrayAdapter<Sach> {
             tvTenSach.setText("Tên Sách: " + item.getTenSach());
             tvGiaThue.setText("Giá Thuê: " + item.getGiaThue());
 
-            loaiSachDAO = new LoaiSachDAO(context);
-            LoaiSach loaiSach = loaiSachDAO.getID(String.valueOf(item.getMaLoai()));
-            tvLoai.setText("Loại Sách: " + loaiSach.getTenLoai());
+//            LoaiSach loaiSach = loaiSachDAO.getID(String.valueOf(item.getMaLoai()));
+//            tvLoai.setText("Loại Sách: " + loaiSach.getTenLoai());
+
+            LoaiSach loaiSach = null;
+            try {
+                loaiSach = loaiSachDAO.getID(String.valueOf(item.getMaLoai()));
+            } catch (IndexOutOfBoundsException e) {
+                // Log error and handle appropriately
+                tvLoai.setText("Loại Sách: Không tìm thấy");
+            }
+            if (loaiSach != null) {
+                tvLoai.setText("Loại Sách: " + loaiSach.getTenLoai());
+            } else {
+                tvLoai.setText("Loại Sách: Không tìm thấy");
+            }
         }
 
         imgDel.setOnClickListener(new View.OnClickListener() {
