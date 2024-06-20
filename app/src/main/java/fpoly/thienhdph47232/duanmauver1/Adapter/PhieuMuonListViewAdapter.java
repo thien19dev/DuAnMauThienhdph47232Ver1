@@ -33,7 +33,7 @@ public class PhieuMuonListViewAdapter extends ArrayAdapter<PhieuMuon> {
     ImageView imgDel;
     SachDAO sachDAO;
     ThanhVienDAO thanhVienDAO;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public PhieuMuonListViewAdapter(@NonNull Context context,
                                     QuanLyPhieuMuon phieuMuonFragment, ArrayList<PhieuMuon> phieuMuonArrayList) {
@@ -73,7 +73,6 @@ public class PhieuMuonListViewAdapter extends ArrayAdapter<PhieuMuon> {
             tvTienThue.setText("Tiền Thuê: " + item.getTienThue());
 
             tvNgay = view.findViewById(R.id.tvNgayMuon);
-//            tvNgay.setText("Ngày: " + simpleDateFormat.format(item.getNgay()));
 
             if (item.getNgay() != null){
                 tvNgay.setText("Ngày: " + simpleDateFormat.format(item.getNgay()));
@@ -102,17 +101,13 @@ public class PhieuMuonListViewAdapter extends ArrayAdapter<PhieuMuon> {
                 Toast.makeText(context, "XÓa!", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
-
         return view;
     }
 
-    public void filterList(ArrayList<PhieuMuon> filteredList) {
-        phieuMuonArrayList = filteredList;
-        notifyDataSetChanged();
-    }
+//    public void filterList(ArrayList<PhieuMuon> filteredList) {
+//        phieuMuonArrayList = filteredList;
+//        notifyDataSetChanged();
+//    }
 
     private void showDeleteConfirmationDialog(int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);

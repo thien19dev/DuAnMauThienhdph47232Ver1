@@ -43,7 +43,6 @@ public class LoaiSachSpinnerAdapter extends ArrayAdapter<LoaiSach> {
             tvTenLoaiSach = view.findViewById(R.id.tvTenLoaiSachSpinner);
             tvTenLoaiSach.setText(item.getTenLoai() + ". ");
         }
-
         return view;
     }
 
@@ -62,7 +61,6 @@ public class LoaiSachSpinnerAdapter extends ArrayAdapter<LoaiSach> {
 
             tvTenLoaiSach = view.findViewById(R.id.tvTenLoaiSachSpinner);
             tvTenLoaiSach.setText(item.getTenLoai() + ". ");
-
         }
         return view;
     }

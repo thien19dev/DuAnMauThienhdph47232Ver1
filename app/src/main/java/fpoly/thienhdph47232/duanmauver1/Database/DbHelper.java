@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "Ver1";
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 1;
     public DbHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -51,21 +51,21 @@ public class DbHelper extends SQLiteOpenHelper {
                 "maLoai INTEGER REFERENCES LoaiSach(maLoai))";
         db.execSQL(CREATE_TABLE_SACH);
         db.execSQL("INSERT INTO Sach VALUES " +
-                "(1, 'Lập Trình Website', 2000, 3), " +
-                "(2, 'Lập Trình Swift', 3000, 2)," +
-                " (3, 'UDPM Cơ Bản', 2500, 3), " +
-                "(4, 'Ứng Dụng Phần Mềm Nâng Cao', 4000, 3), " +
-                "(5, 'Tiếng Anh 1', 1500, 4), " +
-                "(6, 'Tiếng Anh 2', 1500, 4)," +
-                "(7, 'Tiếng Anh 3', 1500, 4), " +
-                "(8, 'Tiếng Anh 4', 1700, 4), " +
-                "(9, 'Lập Trình Android 1', 1700, 1), " +
-                "(10, 'Lập Trình Android 2', 1850, 1), " +
-                "(11, 'Lập Trình Android 3', 2700, 1), " +
-                "(12, 'Lập Trình PHP1', 1700, 3), " +
-                "(13, 'Lập Trình PHP2', 3700, 3), " +
-                "(14, 'Lập Trình PHP3', 3700, 3)," +
-                " (15, 'Lập Trình PHP4', 3700, 3)");
+                "(1, 'Lập Trình Website', 52000, 3), " +
+                "(2, 'Lập Trình Swift', 63000, 2)," +
+                " (3, 'UDPM Cơ Bản', 25200, 3), " +
+                "(4, 'Ứng Dụng Phần Mềm Nâng Cao', 54000, 3), " +
+                "(5, 'Tiếng Anh 1', 25000, 4), " +
+                "(6, 'Tiếng Anh 2', 60500, 4)," +
+                "(7, 'Tiếng Anh 3', 41500, 4), " +
+                "(8, 'Tiếng Anh 4', 31700, 4), " +
+                "(9, 'Lập Trình Android 1', 31700, 1), " +
+                "(10, 'Lập Trình Android 2', 51850, 1), " +
+                "(11, 'Lập Trình Android 3', 22700, 1), " +
+                "(12, 'Lập Trình PHP1', 21700, 3), " +
+                "(13, 'Lập Trình PHP2', 23700, 3), " +
+                "(14, 'Lập Trình PHP3', 23700, 3)," +
+                " (15, 'Lập Trình PHP4', 23700, 3)");
 
         String CREATE_TABLE_PHIEU_MUON = "create table PhieuMuon(" +
                 "maPM INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -77,17 +77,17 @@ public class DbHelper extends SQLiteOpenHelper {
                 "traSach INTEGER NOT NULL)";
         db.execSQL(CREATE_TABLE_PHIEU_MUON);
         db.execSQL("INSERT INTO PhieuMuon VALUES " +
-                "(1, '1', 1, 1, 4000, '21/02/2024', 2), " +
-                "(2, '1', 1, 1, 4000, '21/02/2024', 0), " +
-                "(3, '1', 1, 1, 4000, '21/02/2024', 1), " +
-                "(4, '1', 1, 1, 4000, '21/02/2024', 1), " +
-                "(5, '1', 1, 1, 4000, '21/02/2024', 1), " +
-                "(6, '1', 1, 1, 4000, '21/02/2024', 1), " +
-                "(7, '1', 1, 1, 4000, '21/02/2024', 1), " +
-                "(8, '1', 1, 1, 4000, '21/02/2024', 1), " +
-                "(9, '1', 1, 1, 4000, '21/02/2024', 1), " +
-                "(10, '1', 1, 1, 4000, '21/02/2024', 1), " +
-                "(11, '1', 1, 1, 4000, '21/02/2024', 1)");
+                "(1, '1', 1, 1, 23200, '21/02/2024', 2), " +
+                "(2, '1', 2, 2, 54000, '21/06/2024', 0), " +
+                "(3, '1', 3, 7, 45000, '21/06/2024', 1), " +
+                "(4, '1', 3, 1, 35000, '21/06/2024', 1), " +
+                "(5, '1', 5, 1, 46000, '21/06/2024', 1), " +
+                "(6, '1', 4, 12, 64000, '21/02/2024', 1), " +
+                "(7, '1', 5, 3, 64000, '21/02/2024', 1), " +
+                "(8, '1', 2, 1, 74000, '21/05/2024', 1), " +
+                "(9, '1', 4, 15, 80000, '12/06/2024', 1), " +
+                "(10, '1', 1, 11, 51000, '13/05/2024', 1), " +
+                "(11, '1', 3, 12, 50000, '12/06/2024', 1)");
     }
 
     @Override

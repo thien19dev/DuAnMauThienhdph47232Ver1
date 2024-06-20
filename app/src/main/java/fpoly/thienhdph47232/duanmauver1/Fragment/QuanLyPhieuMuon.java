@@ -70,7 +70,7 @@ public class QuanLyPhieuMuon extends Fragment {
     SachSpinnerAdapter sachSpinnerAdapter;
     ArrayList<Sach> listSach;
     SachDAO sachDAO;
-    Sach sach;
+
     int maSach;
     int tienThue;
     int positionTV, positionSach;
@@ -80,15 +80,12 @@ public class QuanLyPhieuMuon extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quan_ly_phieu_muon, container, false);
-//        recyclerView = view.findViewById(R.id.recycleViewPhieuMuon);
 
         
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         
-////        phieuMuonList = phieuMuonDAO.getAll();
-//        recyclerView.setLayoutManager(linearLayoutManager);
-//        phieuMuonRecyclerViewAdapter = new PhieuMuonRecyclerViewAdapter(getContext(), phieuMuonList);
+
         lvPhieuMuon = view.findViewById(R.id.lvQuanLyPhieuMuon);
         floatAddPhieuMuon = view.findViewById(R.id.fabPhieuMuon);
         phieuMuonDAO = new PhieuMuonDAO(getActivity());
@@ -96,7 +93,6 @@ public class QuanLyPhieuMuon extends Fragment {
         floatAddPhieuMuon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Add!", Toast.LENGTH_SHORT).show();
                 openDialog(getActivity(),0);
             }
         });
@@ -146,7 +142,6 @@ public class QuanLyPhieuMuon extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 maThanhVien = listThanhVien.get(position).getMaThanhVien();
-//                Toast.makeText(context, "Chọn " + listThanhVien.get(position).getHoTen(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -240,8 +235,6 @@ public class QuanLyPhieuMuon extends Fragment {
                 dialog.dismiss();
             }
         });
-
-
         dialog.show();
     }
 
