@@ -80,7 +80,6 @@ public class QuanLyLoaiSach extends Fragment {
                     long check = loaiSachDAO.insert(new LoaiSach(name));
                     if (check!=0){
                         Toast.makeText(getContext(), "Thêm Thành Công!", Toast.LENGTH_SHORT).show();
-
                         loaiSachAdapter = new LoaiSachAdapter(getContext(), loaiSachDAO.getDSLoaiSach());
                         recyclerViewLoaiSach.setAdapter(loaiSachAdapter);
                     } else {

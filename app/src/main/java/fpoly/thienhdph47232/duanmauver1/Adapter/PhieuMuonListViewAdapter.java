@@ -33,7 +33,7 @@ public class PhieuMuonListViewAdapter extends ArrayAdapter<PhieuMuon> {
     ImageView imgDel;
     SachDAO sachDAO;
     ThanhVienDAO thanhVienDAO;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public PhieuMuonListViewAdapter(@NonNull Context context,
                                     QuanLyPhieuMuon phieuMuonFragment, ArrayList<PhieuMuon> phieuMuonArrayList) {
@@ -96,19 +96,13 @@ public class PhieuMuonListViewAdapter extends ArrayAdapter<PhieuMuon> {
         imgDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-// gọi phương thức xóa
+                // gọi phương thức xóa
                 showDeleteConfirmationDialog(position);
                 Toast.makeText(context, "XÓa!", Toast.LENGTH_SHORT).show();
             }
         });
         return view;
     }
-
-//    public void filterList(ArrayList<PhieuMuon> filteredList) {
-//        phieuMuonArrayList = filteredList;
-//        notifyDataSetChanged();
-//    }
-
     private void showDeleteConfirmationDialog(int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Xác nhận xóa");

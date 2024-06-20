@@ -43,10 +43,12 @@ public class LoaiSachDAO {
 
     @SuppressLint("Range")
     public List<LoaiSach> getData(String sql, String...selectionArgs){
-        List<LoaiSach> list = new ArrayList<LoaiSach>();
+        List<LoaiSach> list = new ArrayList<>();
         Cursor cursor = sqLiteDatabase.rawQuery(sql, selectionArgs);
         while (cursor.moveToNext()){
             LoaiSach obj = new LoaiSach();
+//            obj.maLoai = Integer.parseInt(cursor.getString(cursor.getColumnIndex("maLoai"))) ;
+//            obj.tenLoai = cursor.getString(cursor.getColumnIndex("tenLoai"));
             obj.setMaLoai(Integer.parseInt(cursor.getString(cursor.getColumnIndex("maLoai"))));
             obj.setTenLoai(cursor.getString(cursor.getColumnIndex("tenLoai")));
             list.add(obj);

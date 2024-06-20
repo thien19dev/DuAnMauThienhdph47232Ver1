@@ -22,14 +22,11 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.DataInput;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import fpoly.thienhdph47232.duanmauver1.Adapter.PhieuMuonListViewAdapter;
-import fpoly.thienhdph47232.duanmauver1.Adapter.PhieuMuonRecyclerViewAdapter;
 import fpoly.thienhdph47232.duanmauver1.Adapter.SachSpinnerAdapter;
 import fpoly.thienhdph47232.duanmauver1.Adapter.ThanhVienSpinnerAdapter;
 import fpoly.thienhdph47232.duanmauver1.DAO.PhieuMuonDAO;
@@ -43,8 +40,6 @@ import fpoly.thienhdph47232.duanmauver1.R;
 
 public class QuanLyPhieuMuon extends Fragment {
 
-    private RecyclerView recyclerView;
-    private PhieuMuonRecyclerViewAdapter phieuMuonRecyclerViewAdapter;
     private PhieuMuonDAO phieuMuonDAO;
     ArrayList<PhieuMuon> phieuMuonList;
     private FloatingActionButton floatAddPhieuMuon;
@@ -74,7 +69,7 @@ public class QuanLyPhieuMuon extends Fragment {
     int maSach;
     int tienThue;
     int positionTV, positionSach;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -31,8 +31,12 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(1, 'Hoàng Đức Thiện', '2003'), " +
                 "(2, 'Mai Vũ Dũng', '2003'), " +
                 "(3, 'Vũ Hoàng Anh', '2002'), " +
-                "(4,'Nguyễn Văn A', '2001'), " +
-                "(5, 'Nguyễn Thị B', '2000')");
+                "(4, 'Nguyễn Văn An', '2001'), " +
+                "(5, 'Ngô Văn Lợi', '2000')," +
+                "(6, 'Nguyễn Thị Thu', '1999')," +
+                "(7, 'Hoàng Thị Thảo', '1998')," +
+                "(8, 'Nguyễn Thị Thu Huyền', '1997')," +
+                "(9, 'Bùi Đức Duy', '2001')");
 
         String CREATE_TABLE_LOAI_SACH = "create table LoaiSach(" +
                 "maLoai INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -41,8 +45,13 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO LoaiSach VALUES " +
                 "(1, 'Lập Trình Android'), " +
                 "(2, 'Lập Trình IOS'), " +
-                "(3,'Ứng Dụng Phần Mềm'), " +
-                "(4, 'Tiếng Anh')");
+                "(3, 'Ứng Dụng Phần Mềm'), " +
+                "(4, 'Tiếng Anh')," +
+                "(5, 'Điện - Điện Tử')," +
+                "(6, 'Nhập Môn CNTT')," +
+                "(7, 'Kinh Tế')," +
+                "(8, 'Văn Học')," +
+                "(9, 'Chính Trị - Pháp Luật')");
 
         String CREATE_TABLE_SACH = "create table Sach(" +
                 "maSach INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -65,7 +74,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(12, 'Lập Trình PHP1', 21700, 3), " +
                 "(13, 'Lập Trình PHP2', 23700, 3), " +
                 "(14, 'Lập Trình PHP3', 23700, 3)," +
-                " (15, 'Lập Trình PHP4', 23700, 3)");
+                "(15, 'Lập Trình PHP4', 23700, 3)");
 
         String CREATE_TABLE_PHIEU_MUON = "create table PhieuMuon(" +
                 "maPM INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -77,17 +86,17 @@ public class DbHelper extends SQLiteOpenHelper {
                 "traSach INTEGER NOT NULL)";
         db.execSQL(CREATE_TABLE_PHIEU_MUON);
         db.execSQL("INSERT INTO PhieuMuon VALUES " +
-                "(1, '1', 1, 1, 23200, '21/02/2024', 2), " +
-                "(2, '1', 2, 2, 54000, '21/06/2024', 0), " +
-                "(3, '1', 3, 7, 45000, '21/06/2024', 1), " +
-                "(4, '1', 3, 1, 35000, '21/06/2024', 1), " +
-                "(5, '1', 5, 1, 46000, '21/06/2024', 1), " +
-                "(6, '1', 4, 12, 64000, '21/02/2024', 1), " +
-                "(7, '1', 5, 3, 64000, '21/02/2024', 1), " +
-                "(8, '1', 2, 1, 74000, '21/05/2024', 1), " +
-                "(9, '1', 4, 15, 80000, '12/06/2024', 1), " +
-                "(10, '1', 1, 11, 51000, '13/05/2024', 1), " +
-                "(11, '1', 3, 12, 50000, '12/06/2024', 1)");
+                "(1, '1', 1, 1, 4000, '2024-02-21', 2), " +
+                "(2, '1', 1, 1, 4000, '2024-02-21', 0), " +
+                "(3, '1', 1, 1, 4000, '2024-02-21', 1), " +
+                "(4, '1', 1, 1, 4000, '2024-02-21', 1), " +
+                "(5, '1', 1, 1, 4000, '2024-02-21', 1), " +
+                "(6, '1', 1, 1, 4000, '2024-02-21', 1), " +
+                "(7, '1', 1, 1, 4000, '2024-02-21', 1), " +
+                "(8, '1', 1, 1, 4000, '2024-02-21', 1), " +
+                "(9, '1', 1, 1, 4000, '2024-02-21', 1), " +
+                "(10, '1', 1, 1, 4000, '2024-02-21', 1), " +
+                "(11, '1', 1, 1, 4000, '2024-02-21', 1)");
     }
 
     @Override

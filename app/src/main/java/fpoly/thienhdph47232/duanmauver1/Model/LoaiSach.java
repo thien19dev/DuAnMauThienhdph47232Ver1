@@ -1,13 +1,13 @@
 package fpoly.thienhdph47232.duanmauver1.Model;
 
 public class LoaiSach {
-    private int maLoai;
-    private String tenLoai;
+    public int maLoai;
+    public String tenLoai;
 
     public LoaiSach() {
     }
 
-    public LoaiSach( String tenLoai) {
+    public LoaiSach(String tenLoai) {
         this.maLoai = maLoai;
         this.tenLoai = tenLoai;
     }

@@ -48,8 +48,6 @@ public class SachAdapterListView extends ArrayAdapter<Sach> {
 
         final Sach item = sachList.get(position);
         if (item != null){
-            loaiSachDAO = new LoaiSachDAO(context);
-            LoaiSach loaiSach = loaiSachDAO.getID(String.valueOf(item.getMaLoai()));
             tvMaSach = view.findViewById(R.id.tvMaSach);
             tvTenSach = view.findViewById(R.id.tvTenSach);
             tvGiaThue = view.findViewById(R.id.tvGiaThue);
@@ -59,6 +57,9 @@ public class SachAdapterListView extends ArrayAdapter<Sach> {
             tvMaSach.setText("Mã Sách: " + item.getMaSach());
             tvTenSach.setText("Tên Sách: " + item.getTenSach());
             tvGiaThue.setText("Giá Thuê: " + item.getGiaThue());
+
+            loaiSachDAO = new LoaiSachDAO(context);
+            LoaiSach loaiSach = loaiSachDAO.getID(String.valueOf(item.getMaLoai()));
             tvLoai.setText("Loại Sách: " + loaiSach.getTenLoai());
         }
 
