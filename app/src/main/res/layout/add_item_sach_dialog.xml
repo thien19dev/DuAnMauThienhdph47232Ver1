@@ -17,9 +17,10 @@
         android:layout_marginVertical="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Mã Sách"
+        android:hint="Mã Sách Tự Động Cập Nhật Khi Thêm Mới!"
         android:id="@+id/edThemMaSach"
         android:background="@drawable/custom_editext"
+
         />
 
     <EditText

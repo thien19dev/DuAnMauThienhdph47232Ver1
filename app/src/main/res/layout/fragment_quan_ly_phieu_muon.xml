@@ -8,15 +8,32 @@
     tools:context=".Fragment.QuanLyPhieuMuon">
 
 
-        <androidx.appcompat.widget.SearchView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_margin="10dp"
-            android:padding="10dp"
-            android:id="@+id/searchViewPM"
-            android:queryHint="Tìm kiếm phiếu mượn"
-            />
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            >
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:id="@+id/edSearchPM"
+                    android:inputType="text"
+                    android:hint="Nhập mã phiếu mượn muốn tìm kiếm"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/btnSearchPM"
+                    android:text="Tìm"
+                    />
+
+        </LinearLayout>
+
+
         <ListView
             android:id="@+id/lvQuanLyPhieuMuon"
             android:layout_width="match_parent"

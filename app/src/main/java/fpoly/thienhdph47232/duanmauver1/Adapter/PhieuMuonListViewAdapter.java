@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import androidx.annotation.Nullable;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import fpoly.thienhdph47232.duanmauver1.DAO.SachDAO;
 import fpoly.thienhdph47232.duanmauver1.DAO.ThanhVienDAO;
@@ -25,15 +27,24 @@ import fpoly.thienhdph47232.duanmauver1.Model.Sach;
 import fpoly.thienhdph47232.duanmauver1.Model.ThanhVien;
 import fpoly.thienhdph47232.duanmauver1.R;
 
-public class PhieuMuonListViewAdapter extends ArrayAdapter<PhieuMuon> {
+public class PhieuMuonListViewAdapter extends ArrayAdapter<PhieuMuon> implements Filterable {
     private Context context;
     QuanLyPhieuMuon phieuMuonFragment;
     private ArrayList<PhieuMuon> phieuMuonArrayList;
-    TextView tvMaPM, tvTenTVMuon, tvTenSach, tvTienThue, tvNgay, tvTraSach;
+    TextView tvMaPM, tvTenTVMuon, tvTenSach, tvTienThue, tvNgay, tvTraSach, tvGioTao;
     ImageView imgDel;
     SachDAO sachDAO;
     ThanhVienDAO thanhVienDAO;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+
+    public PhieuMuonListViewAdapter(@NonNull Context context,
+                                    QuanLyPhieuMuon phieuMuonFragment, View.OnClickListener onClickListener, ArrayList<PhieuMuon> phieuMuonArrayList) {
+        super(context, 0, phieuMuonArrayList);
+        this.context = context;
+        this.phieuMuonFragment = phieuMuonFragment;
+        this.phieuMuonArrayList = phieuMuonArrayList;
+    }
 
     public PhieuMuonListViewAdapter(@NonNull Context context,
                                     QuanLyPhieuMuon phieuMuonFragment, ArrayList<PhieuMuon> phieuMuonArrayList) {
@@ -87,6 +98,13 @@ public class PhieuMuonListViewAdapter extends ArrayAdapter<PhieuMuon> {
                 tvTraSach.setText("Chưa Trả Sách");
             }
 
+            tvGioTao = view.findViewById(R.id.tvGioTao);
+            if (item.getGioMuon() != null){
+                tvGioTao.setText("Giờ Tạo:  " + timeFormat.format(item.getGioMuon()));
+            } else {
+                tvNgay.setText("Giờ Tạo: : N/A");
+            }
+
             imgDel = view.findViewById(R.id.imgDeletePM);
 
         }
@@ -96,7 +114,6 @@ public class PhieuMuonListViewAdapter extends ArrayAdapter<PhieuMuon> {
             public void onClick(View v) {
                 // gọi phương thức xóa
                 showDeleteConfirmationDialog(position);
-                Toast.makeText(context, "XÓa!", Toast.LENGTH_SHORT).show();
             }
         });
         return view;
@@ -108,6 +125,7 @@ public class PhieuMuonListViewAdapter extends ArrayAdapter<PhieuMuon> {
 
         builder.setPositiveButton("Xóa", (dialog, which) -> {
             phieuMuonArrayList.remove(position);
+            Toast.makeText(context, "Xóa thành công!", Toast.LENGTH_SHORT).show();
             notifyDataSetChanged();
             dialog.dismiss();
         });

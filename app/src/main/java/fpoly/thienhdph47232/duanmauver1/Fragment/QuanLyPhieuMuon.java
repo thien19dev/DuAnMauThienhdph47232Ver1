@@ -4,10 +4,12 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 import fpoly.thienhdph47232.duanmauver1.Adapter.PhieuMuonListViewAdapter;
 import fpoly.thienhdph47232.duanmauver1.Adapter.SachSpinnerAdapter;
@@ -54,13 +58,14 @@ public class QuanLyPhieuMuon extends Fragment {
     CheckBox chkTraSach;
     Button btnLuuPhieuMuon, btnHuyLuuPhieuMuon;
     TextView tvTienThueSach;
-    TextView tvNgayThueSach;
+    TextView tvNgayThueSach, tvgioThueSach;
 
     ThanhVienSpinnerAdapter thanhVienSpinnerAdapter;
     ArrayList<ThanhVien> listThanhVien;
     ThanhVienDAO thanhVienDAO;
     ThanhVien thanhVien;
     int maThanhVien;
+    private SearchView searchView;
 
     SachSpinnerAdapter sachSpinnerAdapter;
     ArrayList<Sach> listSach;
@@ -69,7 +74,11 @@ public class QuanLyPhieuMuon extends Fragment {
     int maSach;
     int tienThue;
     int positionTV, positionSach;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+
+    EditText edSearchPM;
+    Button btnSearchPM;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,8 +91,41 @@ public class QuanLyPhieuMuon extends Fragment {
         
 
         lvPhieuMuon = view.findViewById(R.id.lvQuanLyPhieuMuon);
+
         floatAddPhieuMuon = view.findViewById(R.id.fabPhieuMuon);
         phieuMuonDAO = new PhieuMuonDAO(getActivity());
+
+        edSearchPM = view.findViewById(R.id.edSearchPM);
+        btnSearchPM = view.findViewById(R.id.btnSearchPM);
+        List<PhieuMuon> phieuMuonList = phieuMuonDAO.getAll();
+        sachDAO = new SachDAO(getContext());
+        btnSearchPM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String SearchPM = edSearchPM.getText().toString().trim();
+                List<PhieuMuon> filteredList = new ArrayList<>();
+                if (!SearchPM.isEmpty()){
+//                    for (PhieuMuon phieuMuon : phieuMuonList){
+//                        Sach sach = sachDAO.getID(String.valueOf(phieuMuon.getMaSach()));
+//                        if (sach != null && sach.getTenSach().toString().trim().equalsIgnoreCase(SearchPM)){
+//                            filteredList.add(phieuMuon);
+//                        }
+//                    }
+
+                    for (PhieuMuon phieuMuon : phieuMuonList){
+                        int maPM = Integer.parseInt(SearchPM)  ;
+                        if (phieuMuon.getMaPhieuMuon() == maPM){
+                            filteredList.add(phieuMuon);
+                        }
+                    }
+                    phieuMuonListViewAdapter = new PhieuMuonListViewAdapter(getActivity(), QuanLyPhieuMuon.this, (ArrayList<PhieuMuon>) filteredList);
+                    lvPhieuMuon.setAdapter(phieuMuonListViewAdapter);
+                } else {
+                    Toast.makeText(getContext(), "Bạn phải nhập tên sách?", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
 
         floatAddPhieuMuon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,12 +160,15 @@ public class QuanLyPhieuMuon extends Fragment {
         spSach = dialog.findViewById(R.id.spMaSach);
         tvTienThueSach = dialog.findViewById(R.id.tvTienThueSach);
         tvNgayThueSach = dialog.findViewById(R.id.tvNgayThueSach);
+        tvgioThueSach = dialog.findViewById(R.id.tvGioThueSach);
+
 
         // set ngày thuê, mặc định ngày hiện hành
 
+
+
         tvNgayThueSach.setText("Ngày Thuê: " + simpleDateFormat.format(new Date()));
-
-
+        tvgioThueSach.setText("Giờ Thuê: " + timeFormat.format(new Date()));
 
         chkTraSach = dialog.findViewById(R.id.chkTraSach);
         btnLuuPhieuMuon = dialog.findViewById(R.id.btnLuuPhieuMuon);
@@ -165,6 +210,10 @@ public class QuanLyPhieuMuon extends Fragment {
             }
         });
 
+        edMaPM.setEnabled(false);
+        edMaPM.setFocusable(false);
+        edMaPM.setInputType(InputType.TYPE_NULL);
+
         // edit -- set data lên form
         if (type != 0){
             edMaPM.setText(String.valueOf(item.getMaPhieuMuon()));
@@ -182,6 +231,8 @@ public class QuanLyPhieuMuon extends Fragment {
             }
 //            tvNgayThueSach.setText("Ngày Thuê: " + simpleDateFormat.format(item.getNgay()));
             tvTienThueSach.setText("Tiền Thuê: " + item.getTienThue());
+            tvgioThueSach.setText("Giờ Thuê Sách: " + timeFormat.format(item.getGioMuon()) );
+            tvNgayThueSach.setText("Ngày Thuê Sách: " + simpleDateFormat.format(item.getNgay()) );
 
             if (item.getTraSach() == 1){
                 chkTraSach.setChecked(true);
@@ -203,6 +254,8 @@ public class QuanLyPhieuMuon extends Fragment {
                 item.setMaThanhVien(maThanhVien);
                 item.setNgay(new Date());
                 item.setTienThue(tienThue);
+                item.setGioMuon(new Date());
+
                 if (chkTraSach.isChecked()){
                     item.setTraSach(1);
                 } else {
@@ -226,7 +279,6 @@ public class QuanLyPhieuMuon extends Fragment {
                     }
                 }
                 CapNhatLV();
-
                 dialog.dismiss();
             }
         });

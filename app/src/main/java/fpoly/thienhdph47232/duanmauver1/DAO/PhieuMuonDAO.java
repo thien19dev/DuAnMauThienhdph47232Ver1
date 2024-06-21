@@ -4,13 +4,18 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.SimpleFormatter;
 import fpoly.thienhdph47232.duanmauver1.Database.DbHelper;
 import fpoly.thienhdph47232.duanmauver1.Model.PhieuMuon;
@@ -21,7 +26,8 @@ public class PhieuMuonDAO {
     private SQLiteDatabase sqLiteDatabase;
     DbHelper dbHelper;
     private Context context;
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
 
     public PhieuMuonDAO(Context context) {
         this.context = context;
@@ -37,6 +43,7 @@ public class PhieuMuonDAO {
         values.put("ngay", dateFormat.format(obj.getNgay()));
         values.put("tienThue", obj.getTienThue());
         values.put("traSach", obj.getTraSach());
+        values.put("gioTao", timeFormat.format(obj.getGioMuon()));
 
         return sqLiteDatabase.insert("PhieuMuon", null, values);
     }
@@ -49,6 +56,7 @@ public class PhieuMuonDAO {
         values.put("ngay", dateFormat.format(obj.getNgay()));
         values.put("tienThue", obj.getTienThue());
         values.put("traSach", obj.getTraSach());
+        // Không cập nhật gioTao
         return sqLiteDatabase.update("PhieuMuon", values, "maPM=?", new String[]{String.valueOf(obj.getMaPhieuMuon())});
     }
 
@@ -73,6 +81,12 @@ public class PhieuMuonDAO {
                 e.printStackTrace();
             }
             obj.setTraSach(Integer.parseInt(c.getString(c.getColumnIndex("traSach"))));
+
+            try {
+                obj.setGioMuon(timeFormat.parse(c.getString(c.getColumnIndex("gioTao"))));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             list.add(obj);
         }
         return list;

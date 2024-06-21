@@ -1,5 +1,6 @@
 package fpoly.thienhdph47232.duanmauver1.Model;
 
+import java.time.LocalTime;
 import java.util.Date;
 
 public class PhieuMuon {
@@ -7,6 +8,7 @@ public class PhieuMuon {
     public String maThuThu;
     public int maThanhVien, maSach;
     public Date ngay;
+    public Date gioMuon;
     public int traSach, tienThue;
     public PhieuMuon() {
     }
@@ -24,6 +26,23 @@ public class PhieuMuon {
         this.ngay = ngay;
         this.traSach = traSach;
         this.tienThue = tienThue;
+    }
+
+    public PhieuMuon(String maThuThu,
+                     int maThanhVien,
+                     int maSach,
+                     Date ngay,
+                     int traSach,
+                     int tienThue,
+                     Date gioMuon) {
+        this.maPhieuMuon = maPhieuMuon;
+        this.maThuThu = maThuThu;
+        this.maThanhVien = maThanhVien;
+        this.maSach = maSach;
+        this.ngay = ngay;
+        this.traSach = traSach;
+        this.tienThue = tienThue;
+        this.gioMuon = gioMuon;
     }
 
     public int getMaPhieuMuon() {
@@ -80,5 +99,13 @@ public class PhieuMuon {
 
     public void setTienThue(int tienThue) {
         this.tienThue = tienThue;
+    }
+
+    public Date getGioMuon() {
+        return gioMuon;
+    }
+
+    public void setGioMuon(Date gioMuon) {
+        this.gioMuon = gioMuon;
     }
 }
