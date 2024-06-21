@@ -45,14 +45,13 @@ public class QuanLySach extends Fragment {
     private LoaiSachSpinnerAdapter loaiSachSpinnerAdapter;
     Dialog dialog;
     Spinner LoaiSachspinner;
-    EditText edMaSach, edTenSach, edGiaThue;
+    EditText edMaSach, edTenSach, edGiaThue, edThemSoLuongSach;
 //     btnAddSach, btnCancelAddSach;
     ArrayList<LoaiSach> loaiSachArrayList;
     LoaiSachDAO loaiSachDAO;
     int maLoaiSach, position;
-
-
-
+    Button btnSearchID;
+    EditText edSearchID;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,8 +59,11 @@ public class QuanLySach extends Fragment {
 
         floatAddSach = view.findViewById(R.id.fabSach);
         lvSach = view.findViewById(R.id.lvSach);
+        btnSearchID = view.findViewById(R.id.btnSearchID);
+        edSearchID = view.findViewById(R.id.edSearchID);
         sachDAO = new SachDAO(getActivity());
-        
+
+
         floatAddSach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +71,29 @@ public class QuanLySach extends Fragment {
                 capNhatLv();
             }
         });
+
+        btnSearchID.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String soLuongSach = edSearchID.getText().toString();
+                List<Sach> filteredList = new ArrayList<>();
+                
+                if (!soLuongSach.isEmpty()){
+                    int soLuong = Integer.parseInt(soLuongSach);
+                    for (Sach sach : sachList) {
+                        if (sach.getSoLuong() <= soLuong) {
+                            filteredList.add(sach);
+                        }
+                    }
+                    sachAdapter = new SachAdapterListView(getActivity(), this, filteredList);
+                    lvSach.setAdapter(sachAdapter);
+                } else {
+                    Toast.makeText(getContext(), "Bạn phải nhập số lượng sách?", Toast.LENGTH_SHORT).show();
+                }
+                
+            }
+        });
+
 
         lvSach.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -97,6 +122,7 @@ public class QuanLySach extends Fragment {
         edMaSach = dialog.findViewById(R.id.edThemMaSach);
         edTenSach = dialog.findViewById(R.id.edThemTenSach);
         edGiaThue = dialog.findViewById(R.id.edThemGiaThueSach);
+        edThemSoLuongSach = dialog.findViewById(R.id.edThemSoLuongSach);
 
         LoaiSachspinner = dialog.findViewById(R.id.spLoaiSach);
         Button btnAddSach = dialog.findViewById(R.id.btnSaveSach);
@@ -129,6 +155,7 @@ public class QuanLySach extends Fragment {
             edMaSach.setText(String.valueOf(item.getMaSach()));
             edTenSach.setText(item.getTenSach());
             edGiaThue.setText(String.valueOf(item.getGiaThue()));
+            edThemSoLuongSach.setText(Integer.toString(item.getSoLuong()));
 
             for (int i = 0; i < loaiSachArrayList.size(); i++){
                 if (item.getMaLoai() == (loaiSachArrayList.get(i).getMaLoai())){
@@ -138,6 +165,8 @@ public class QuanLySach extends Fragment {
                 LoaiSachspinner.setSelection(position);
             }
         }
+
+
 
         btnCancelAddSach.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,12 +178,12 @@ public class QuanLySach extends Fragment {
         btnAddSach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (vadidate() > 0){
                     item = new Sach();
                     item.setTenSach(edTenSach.getText().toString());
                     item.setGiaThue(Integer.parseInt(edGiaThue.getText().toString()));
                     item.setMaLoai(maLoaiSach);
+                    item.setSoLuong(Integer.parseInt(edThemSoLuongSach.getText().toString()) );
                     if (type == 0){
                         // type = 0 (insert)
                         if (sachDAO.insertSach(item)>0){
@@ -178,6 +207,8 @@ public class QuanLySach extends Fragment {
         });
         dialog.show();
     }
+
+
     public int vadidate(){
         int check = 1;
         if (edTenSach.getText().length() == 0 || edGiaThue.getText().length() == 0) {

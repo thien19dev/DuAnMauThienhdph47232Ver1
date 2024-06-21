@@ -5,8 +5,34 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="50dp"
     tools:context=".Fragment.QuanLySach">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="10dp"
+        >
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:id="@+id/edSearchID"
+            android:inputType="number"
+            android:hint="Nhập số lượng sách muốn tìm kiếm"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/btnSearchID"
+            android:text="Tìm"
+            />
+
+    </LinearLayout>
 
     <ListView
+        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/lvSach"/>

@@ -36,6 +36,18 @@
         android:id="@+id/edThemSinhThanhVien"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Số Tài Khoản: "
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edThemSoTaiKhoanThanhVien"
+        android:inputType="number"
+        />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

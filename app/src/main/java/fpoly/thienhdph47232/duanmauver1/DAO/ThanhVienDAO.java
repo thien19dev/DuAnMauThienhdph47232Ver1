@@ -24,6 +24,7 @@ public class ThanhVienDAO {
         ContentValues values = new ContentValues();
         values.put("hoTen", thanhVien.hoTen);
         values.put("namSinh", thanhVien.namSinh);
+        values.put("soTaiKhoan", thanhVien.soTaiKhoan);
         return db.insert("ThanhVien", null, values);
     }
     public int updateThanhVien(ThanhVien thanhVien){
@@ -58,9 +59,17 @@ public class ThanhVienDAO {
         if (cursor != null && cursor.getCount() > 0){
             cursor.moveToFirst();
             do {
-                ThanhVien obj = new ThanhVien(cursor.getString(1),cursor.getString(2));
-                obj.setMaThanhVien(cursor.getInt(0));
+                int maThanhVien = cursor.getInt(cursor.getColumnIndex("maTV"));
+                String hoTen = cursor.getString(cursor.getColumnIndex("hoTen"));
+                String namSinh = cursor.getString(cursor.getColumnIndex("namSinh"));
+                int soTaiKhoan = cursor.getInt(cursor.getColumnIndex("soTaiKhoan"));
+                ThanhVien obj = new ThanhVien(hoTen, namSinh, soTaiKhoan);
+                obj.setMaThanhVien(maThanhVien);
                 thanhVienList.add(obj);
+
+//                ThanhVien obj = new ThanhVien(cursor.getString(1),cursor.getString(2));
+//                obj.setMaThanhVien(cursor.getInt(0));
+//                thanhVienList.add(obj);
             } while (cursor.moveToNext());
             cursor.close();
         }

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,13 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.View
         holder.tvIDThanhVien.setText("ID: " + thanhVienList.get(position).getMaThanhVien());
         holder.tvTenThanhVien.setText("Tên: " + thanhVienList.get(position).getHoTen());
         holder.tvNamSinh.setText("Năm Sinh: " + thanhVienList.get(position).getNamSinh());
+        holder.tvSoTaiKhoan.setText("Số Tài Khoản: " + thanhVienList.get(position).getSoTaiKhoan());
+
+        if (thanhVienList.get(position).getSoTaiKhoan() % 5 == 0 ){
+            holder.tvSoTaiKhoan.setTypeface(null, Typeface.BOLD);
+        } else {
+            holder.tvSoTaiKhoan.setTypeface(null, Typeface.NORMAL);
+        }
 
         ThanhVien thanhVien = thanhVienList.get(position);
         holder.ivDelete.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +82,7 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView tvIDThanhVien, tvTenThanhVien, tvNamSinh;
+        private TextView tvIDThanhVien, tvTenThanhVien, tvNamSinh, tvSoTaiKhoan;
         private ImageView ivEdit, ivDelete;
 
         public ViewHolder(@NonNull View itemView) {
@@ -82,8 +90,10 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.View
             tvIDThanhVien = itemView.findViewById(R.id.tvIDThanhVien);
             tvTenThanhVien = itemView.findViewById(R.id.tvTenThanhVien);
             tvNamSinh = itemView.findViewById(R.id.tvNamSinh);
+            tvSoTaiKhoan = itemView.findViewById(R.id.tvSoTaiKhoan);
             ivDelete = itemView.findViewById(R.id.ivDeleteThanhVien);
             ivEdit = itemView.findViewById(R.id.ivEditThanhVien);
+
         }
     }
 
@@ -113,7 +123,7 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.View
                     thanhVien.setHoTen(ten);
                     thanhVien.setNamSinh(namSinh);
 
-                    ThanhVien thanhVien = new ThanhVien(ten, namSinh);
+                    ThanhVien thanhVien = new ThanhVien(ten, namSinh );
                     thanhVienDAO.updateThanhVien(thanhVien);
                     notifyDataSetChanged();
                     builder.dismiss();

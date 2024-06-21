@@ -27,6 +27,7 @@ public class SachDAO {
         values.put("tenSach", sach.getTenSach());
         values.put("giaThue", sach.getGiaThue());
         values.put("maLoai", sach.getMaLoai());
+        values.put("soLuong", sach.getSoLuong());
 
         return db.insert("Sach", null, values);
     }
@@ -36,6 +37,7 @@ public class SachDAO {
         values.put("tenSach", sach.getTenSach());
         values.put("giaThue", sach.getGiaThue());
         values.put("maLoai", sach.getMaLoai());
+        values.put("soLuong", sach.getSoLuong());
 
         return db.update("Sach", values, "maSach=?", new String[]{String.valueOf(sach.maSach)});
     }
@@ -55,6 +57,7 @@ public class SachDAO {
             obj.tenSach = c.getString(c.getColumnIndex("tenSach"));
             obj.giaThue = Integer.parseInt(c.getString(c.getColumnIndex("giaThue")));
             obj.maLoai = Integer.parseInt(c.getString(c.getColumnIndex("maLoai")));
+            obj.soLuong = Integer.parseInt(c.getString(c.getColumnIndex("soLuong")));
             list.add(obj);
         }
         return list;

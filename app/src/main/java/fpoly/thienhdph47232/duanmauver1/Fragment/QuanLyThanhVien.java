@@ -66,6 +66,7 @@ public class QuanLyThanhVien extends Fragment {
 
         EditText edHoTen = view.findViewById(R.id.edThemTenThanhVien);
         EditText edNamSinh = view.findViewById(R.id.edThemSinhThanhVien);
+        EditText edThemSoTaiKhoanThanhVien = view.findViewById(R.id.edThemSoTaiKhoanThanhVien);
         Button btnThemThanhVien = view.findViewById(R.id.btnThemThanhVien);
         Button btnHuyThemThanhVien = view.findViewById(R.id.btnHuyThemThanhVien);
 
@@ -76,8 +77,9 @@ public class QuanLyThanhVien extends Fragment {
             public void onClick(View v) {
                 String ten = edHoTen.getText().toString();
                 String namSinh = edNamSinh.getText().toString();
+                Long soTaiKhoan = Long.parseLong(edThemSoTaiKhoanThanhVien.getText().toString());
                 if (!ten.isEmpty() && !namSinh.isEmpty()){
-                    long check = thanhVienDAO.insertThanhVien(new ThanhVien(ten,namSinh));
+                    long check = thanhVienDAO.insertThanhVien(new ThanhVien(ten,namSinh, soTaiKhoan));
                     if (check != 0) {
                         Toast.makeText(getContext(), "Thêm Thành Công", Toast.LENGTH_SHORT).show();
                         thanhVienAdapter = new ThanhVienAdapter(getContext(), thanhVienDAO.getDSThanhVien());

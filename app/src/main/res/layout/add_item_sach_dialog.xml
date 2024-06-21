@@ -38,6 +38,15 @@
         android:hint="Giá Thuê"
         android:background="@drawable/custom_editext"
         />
+
+    <EditText
+        android:id="@+id/edThemSoLuongSach"
+        android:layout_marginVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Số Lượng"
+        android:background="@drawable/custom_editext"
+        />
     
     <Spinner
         android:layout_width="match_parent"

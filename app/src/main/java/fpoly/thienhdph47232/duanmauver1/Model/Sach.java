@@ -1,11 +1,19 @@
 package fpoly.thienhdph47232.duanmauver1.Model;
 
 public class Sach {
-    public int maSach, maLoai, giaThue,loaiSach;
+    public int maSach, maLoai, giaThue,loaiSach, soLuong;
     public String tenSach ;
 
 
     public Sach() {
+    }
+
+    public Sach(String tenSach, int giaThue, int loaiSach, int soLuong) {
+        this.maSach = maSach;
+        this.tenSach = tenSach;
+        this.giaThue = giaThue;
+        this.loaiSach = loaiSach;
+        this.soLuong = soLuong;
     }
 
     public Sach(String tenSach, int giaThue, int loaiSach) {
@@ -53,5 +61,13 @@ public class Sach {
 
     public void setTenSach(String tenSach) {
         this.tenSach = tenSach;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 }
